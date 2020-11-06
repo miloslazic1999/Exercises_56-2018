@@ -57,7 +57,10 @@
             this.ClientSize = new System.Drawing.Size(231, 254);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxExerciseResults);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exercise results";
             this.Load += new System.EventHandler(this.Ucitaj);
             this.ResumeLayout(false);

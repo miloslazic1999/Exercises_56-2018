@@ -14,10 +14,12 @@ namespace Exercise_56_2018
     public partial class Form1 : Form
     {
         private SqlConnection connection { get; set; }
+        private List<ExerciseResult> results { get; set; }
 
         public Form1()
         {
             InitializeComponent();
+            results = new List<ExerciseResult>();
         }
 
         private void Ucitaj(object sender, EventArgs e)
@@ -30,8 +32,6 @@ namespace Exercise_56_2018
 
             var reader = cmd.ExecuteReader();
 
-            listBoxExerciseResults.Items.Clear();
-
             while(reader.Read())
             {
                 var id = reader.GetInt32(reader.GetOrdinal("Id"));
@@ -39,8 +39,13 @@ namespace Exercise_56_2018
                 var index = reader.GetString(reader.GetOrdinal("StudentIndex"));
                 var points = reader.GetInt32(reader.GetOrdinal("Points"));
 
-                listBoxExerciseResults.Items.Add(new ExerciseResult(id, name, index, points));
+                results.Add(new ExerciseResult(id, name, index, points));
             }
+
+            listBoxExerciseResults.Items.Clear();
+
+            foreach (var item in results)
+                listBoxExerciseResults.Items.Add(item);
 
             connection.Close();
         }
